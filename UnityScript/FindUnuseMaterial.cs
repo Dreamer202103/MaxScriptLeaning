@@ -21,7 +21,7 @@ public class FindUnuseMaterial : EditorWindow
     private string path = "请输入文本...";
     public void OnGUI()
     {
-        GUILayout.Label("请将CarShow预制体拖入下方：");
+        GUILayout.Label("请将CarShow预制体拖入下方:");
         model = EditorGUILayout.ObjectField(model, typeof(GameObject), true) as GameObject;
         GUILayout.Label("复制材质球的路径填在下面:");
         path = EditorGUILayout.TextField("材质球路径:", path);
@@ -47,35 +47,23 @@ public class FindUnuseMaterial : EditorWindow
                     bool lastName2 = fileNameWithoutExtension.EndsWith("_Glass_black", System.StringComparison.OrdinalIgnoreCase);
                     bool lastName3 = fileNameWithoutExtension.EndsWith("_Glass_perspective", System.StringComparison.OrdinalIgnoreCase);
                     bool lastName4 = fileNameWithoutExtension.EndsWith("_LightGlass", System.StringComparison.OrdinalIgnoreCase);
-                    if (lastName1)
+
+                    if (lastName1|| lastName2 || lastName3 || lastName4)
                     {
                         MateiralsName.Add(fileNameWithoutExtension);
                     }
-                    if (lastName2)
-                    {
-                        MateiralsName.Add(fileNameWithoutExtension);
-                    }
-                    if (lastName3)
-                    {
-                        MateiralsName.Add(fileNameWithoutExtension);
-                    }
-                    if (lastName4)
-                    {
-                        MateiralsName.Add(fileNameWithoutExtension);
-                    }
+                    
 
                     bool containsBanana = MateiralsName.Contains(fileNameWithoutExtension);
 
                     if (!containsBanana)
                     {
 
-                        // File.Delete(path +"/" + fileNameWithoutExtension + ".mat");
-                        Debug.Log("删除材质球的名字是：" + fileNameWithoutExtension);
+                        File.Delete(path +"/" + fileNameWithoutExtension + ".mat");
+                        Debug.Log("已经删除材质球的名字是：" + fileNameWithoutExtension);
+                        // Debug.Log("要删除材质球的名字是：" + fileNameWithoutExtension);
 
                     }
-
-
-
                 }
 
             }
