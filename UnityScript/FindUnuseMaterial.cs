@@ -35,7 +35,6 @@ public class FindUnuseMaterial : EditorWindow
                 string extension = Path.GetExtension(files[i]);
                 // 获取文件名（不包括扩展名）
                 CollectObjectMaterialsName(model);
-
                 if (string.Equals(extension, ".mat"))
                 {
                     //输出文件名(不包含路径)
@@ -67,8 +66,6 @@ public class FindUnuseMaterial : EditorWindow
                 }
 
             }
-
-            //CollectObjectMaterialsName(model);
         }
     }
     public void CollectObjectMaterialsName(GameObject gameObject)
@@ -77,7 +74,6 @@ public class FindUnuseMaterial : EditorWindow
         // MateiralsName = null;
         foreach (Renderer renderer in renderers)
         {
-            
             // 或者使用renderer.materials来获取实例化的材质 
             Material[] materials = renderer.sharedMaterials;  
             // Debug.Log(renderer.name);
@@ -90,9 +86,7 @@ public class FindUnuseMaterial : EditorWindow
                     MateiralsName.Add(material.name);
                 else
                     Debug.LogError(renderer.name);
-
             }
-
         }
     }
 

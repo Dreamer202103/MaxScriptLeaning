@@ -7,6 +7,9 @@ using System.IO;
 
 public class SearchMaterialMapPath : EditorWindow
 {
+    // public Haset<string> guidNmae = new Haset<string>();
+    
+
     [MenuItem("DreamerTools/SearchMaterialMappath", false, 1)]
     static public void ShowSearchMaterialMapPath()
     {
@@ -77,5 +80,29 @@ public class SearchMaterialMapPath : EditorWindow
                 }
             }
         }
+
+
+        GUILayout.Label("复制材质球的路径填在下面:");
+        path = EditorGUILayout.TextField("材质球路径:", path);
+        if (GUILayout.Button("Search Under Fold Files GUID"))
+        {
+            // 获取指定路径下的所有文件和子文件夹
+            string[] files = Directory.GetFiles(path);
+            for (int i = 0; i < files.Length; i++)
+            {
+                //输出文件名(不包含路径)
+                string fileName = Path.GetFileName(files[i]);
+                Debug.Log("" + fileName);
+            }
+            // Debug.Log("GUID:" + AssetDatabase.AssetPathToGUID(path));
+        }
+        // GUILayout.Label(":");
+        // model = EditorGUILayout.ObjectField(model, typeof(GameObject), true) as GameObject;
+        // GUILayout.Label("材质球的路径:");
+        // path = EditorGUILayout.TextField("材质球路径:", path);
+        // if (GUILayout.Button("Search All Files GUID"))
+        // {
+        //     Debug.Log("GUID:" + AssetPathToGUID(path));
+        // }
     }
 }
