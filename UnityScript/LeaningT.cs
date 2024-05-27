@@ -38,6 +38,20 @@ public class LeaningT : EditorWindow
             // Debug.Log(typeof(float));
             foreach (var obj in Selection.objects)
             {
+                /*
+                 * if (obj is UnityEngine.Object unityObject)
+                 * 这条语句是C# 7.0及更高版本中引入的模式匹配（Pattern Matching）功能的一个示例，特别是is表达式的一个增强版本
+                 * is UnityEngine.Object：这是一个传统的is关键字用法，用于检查obj是否是UnityEngine.Object或其派生类的实例。
+                 * 但是，与传统的is关键字用法不同，这里我们不仅仅是要检查类型，还要进行类型转换。
+                 * unityObject：这是一个新的变量（或称为“输出变量”），
+                 * 它将在if语句的条件为true时被赋予obj的值（但此时的obj已经被视为UnityEngine.Object或其派生类的实例）。
+                 * 这样的好处是，你不需要先使用is检查类型，然后再进行显式的类型转换。你可以一次性完成这两个操作，并使代码更加简洁和易读。
+                 * if (obj is UnityEngine.Object)  
+                 * {  
+                 *       UnityEngine.Object unityObject = (UnityEngine.Object)obj;  
+                 *     // 使用unityObject...  
+                 * }
+                 */
                 // 首先检查它是否是一个 UnityEngine.Object  
                 if (obj is UnityEngine.Object unityObject)
                 {
