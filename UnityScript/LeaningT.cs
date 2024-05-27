@@ -68,6 +68,7 @@ public class LeaningT : EditorWindow
                     {
                         // 尝试获取资源的路径（对于场景中的GameObject，这将返回空字符串）  
                         string assetPath = AssetDatabase.GetAssetPath(unityObject);
+                        //!string.IsNullOrEmpty判断路径是不是空的
                         if (!string.IsNullOrEmpty(assetPath))
                         {
                             // 获取文件名和扩展名  
