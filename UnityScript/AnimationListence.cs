@@ -27,7 +27,6 @@ public class AnimationListence : MonoBehaviour
         // 获取动画层的数量 
         // int numLayers = animator.layerCount;
         // Debug.Log("动画长度是：" + numLayers);
-
         for (int layerIndex0 = 0; layerIndex0 < animator.layerCount; layerIndex0++)
         {
             stateInfo = animator.GetCurrentAnimatorStateInfo(layerIndex0);
@@ -47,8 +46,19 @@ public class AnimationListence : MonoBehaviour
                 //Get the animator clip information from the Animator Controller
                 //从这个动画控制器中获取动画剪辑信息
                 m_AnimatorClipInfo = animator.GetCurrentAnimatorClipInfo(layerIndex);
+                bool l = animator.GetBool("LB_Open");
+                
+                Debug.Log("5" + l);
+                // if (animator.GetBool("weipai_gaoshan_2024_140km_LB_Open"))
+                // {
+                //     audioSource.clip = openAudio;
+                //     audioSource.Play();
+                // }
+
                 if (m_AnimatorClipInfo[0].clip.name == "weipai_gaoshan_2024_140km_LB_Open")
                 {
+                    // animator.SetTrigger("LB_Open");
+
                     audioSource.clip = openAudio;
                     audioSource.Play();
                     Debug.Log("播放开门声音");
@@ -73,4 +83,5 @@ public class AnimationListence : MonoBehaviour
 
     }
 
+    
 }
