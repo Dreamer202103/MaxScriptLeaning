@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimationAudio : MonoBehaviour
 {
+    
     public AudioSource audioSource;
     public AudioClip openAudio;
     public AudioClip closeAudio;
@@ -19,20 +20,37 @@ public class AnimationAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        stateInfo = animator.GetCurrentAnimatorStateInfo(1);
-        bool t4p1a = stateInfo.IsTag("LB_Open");
-        bool t4p1b = stateInfo.IsTag("LB_Close");
-        // Debug.Log("0：" + t4p1a);
-        if (t4p1a)
+        for (int layerIndex0 = 0; layerIndex0 < animator.layerCount; layerIndex0++)
         {
-            audioSource.clip = openAudio;
-            audioSource.Play();
+            
+            // 检查该层上是否有动画正在播放  
+            if (stateInfo.length > 0f && stateInfo.normalizedTime < 1f)
+            {
+
+                // bool t4p1a = stateInfo.IsTag("LB_Open");
+                // bool t4p1b = stateInfo.IsTag("LB_Close");
+                // Debug.Log("0：" + t4p1a);
+
+            }
         }
-        else if (t4p1b)
+        stateInfo = animator.GetCurrentAnimatorStateInfo(1);
+
+        
+        // if (stateInfo.IsTag("LB_Open") == false)
+        // {
+        //     audioSource.clip = openAudio;
+        //     audioSource.Play();
+        // }
+        if (stateInfo.IsTag("LB_Close") == false)
         {
             audioSource.clip = closeAudio;
             audioSource.Play();
         }
+        // else
+        // {
+
+        //     Debug.Log("动画还没有运行哦。");
+        // }
 
     }
 }
