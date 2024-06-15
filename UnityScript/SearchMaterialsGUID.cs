@@ -35,7 +35,27 @@ public class SearchMaterialsGUID : EditorWindow
         if (GUILayout.Button("Search Under Fold Files GUID"))
         {
             // 获取文件夹下所有资源的GUID列表  
+            /*
+            AssetDatabase.FindAssets 是Unity引擎中的一个API方法
+            用于在Unity的Asset Database中搜索资产。
+            这个方法的常规方式是这样的：string[] FindAssets(string searchFilter, string[] searchInFolders = null)
+            searchFilter: 这是一个额字符串，用于定义搜索的过滤条件。例如：你可以搜索所有以"t:Texture"开头的资源来找到所有纹理。
+            searchInFolders:这是一个可选的字符串数组，用于指定要在其中搜索的文件夹
+
+            如果你只是想在 Commopath1 指定的文件夹中搜索特定类型的资产（例如纹理），你可能需要这样做：
+            string Commopath1 = "Assets/SomeFolder"; // 假设这是你要搜索的文件夹路径  
+            string searchFilter = "t:Texture"; // 只搜索纹理  
+            string[] assets = AssetDatabase.FindAssets(searchFilter, new string[] { Commopath1 });
+            这样，你就只会得到在 Commopath1 文件夹中的纹理资产的 GUID 数组。
+            */
             string[] guids = AssetDatabase.FindAssets("", new string[] { Commopath1 });
+            /*
+            string[] guids = AssetDatabase.FindAssets("", new string[] { Commopath1 });
+            1.第一个参数("")是一个空字符串，这意味着没有提供任何搜索过滤条件，因此它可能会返回项目中的所有资产。
+            2.第二个参数(new string[] { Commopath1 })应该是要搜索的文件夹路径的数组。但是Commonpath1是一个字符串，它表示
+            某个文件夹得路径
+            */
+
             foreach (string guid in guids)
             {
                 GUIDsName.Add(guid);
@@ -51,32 +71,32 @@ public class SearchMaterialsGUID : EditorWindow
             string[] guids3 = AssetDatabase.FindAssets("", new string[] { Commopath3 });
             foreach (string guid in guids3)
             {
-                GUIDsName.Add(guid);  
+                GUIDsName.Add(guid);
             }
             string[] guids4 = AssetDatabase.FindAssets("", new string[] { Commopath4 });
             foreach (string guid in guids4)
             {
-                GUIDsName.Add(guid);  
+                GUIDsName.Add(guid);
             }
             string[] guids5 = AssetDatabase.FindAssets("", new string[] { Commopath5 });
             foreach (string guid in guids5)
             {
-                GUIDsName.Add(guid);  
+                GUIDsName.Add(guid);
             }
             string[] guids6 = AssetDatabase.FindAssets("", new string[] { Commopath6 });
             foreach (string guid in guids6)
             {
-                GUIDsName.Add(guid);  
+                GUIDsName.Add(guid);
             }
             string[] guids7 = AssetDatabase.FindAssets("", new string[] { Commopath7 });
             foreach (string guid in guids7)
             {
-                GUIDsName.Add(guid);  
+                GUIDsName.Add(guid);
             }
             string[] guids8 = AssetDatabase.FindAssets("", new string[] { Commopath8 });
             foreach (string guid in guids8)
             {
-                GUIDsName.Add(guid);  
+                GUIDsName.Add(guid);
             }
             Material selectedMaterial = Selection.activeObject as Material;
             // Material selectedMaterial = Selection.objects as Material;
@@ -166,11 +186,11 @@ public class SearchMaterialsGUID : EditorWindow
                                 {
                                     string GUIDfilename = System.IO.Path.GetFileName(AssetDatabase.GUIDToAssetPath(i));
                                     //Debug.LogWarning("000000" + GUIDfilename);
-                                    
+
                                     if (fileName == GUIDfilename)
                                     {
                                         string texturePath = AssetDatabase.GUIDToAssetPath(i);
-                                        
+
                                         // 加载贴图资源  
                                         Texture2D texture1 = AssetDatabase.LoadAssetAtPath<Texture2D>(texturePath);
                                         material.SetTexture(shaderPropertyName, texture1);
