@@ -13,13 +13,20 @@ public class SearchMaterialsGUID : EditorWindow
     // 用于存储找到的材质球的列表  
     List<Material> materials = new List<Material>();
 
-    [MenuItem("DreamerTools/Search Under Fold Files GUID", false, 0)]
+    [MenuItem("DreamerTools/Search Under Fold Files GUID", false, 5)]
     static void ShowSearchMaterialsGUID()
     {
         EditorWindow.GetWindow<SearchMaterialsGUID>("Search Under Fold Files GUID");
     }
 
-    private string Commopath = "Assets/Update/Common";
+    // private string Commopath = "Assets/Update/Common";
+    private string Commopath1 = "Assets/Update/Common_1";
+    private string Commopath3 = "Assets/Update/Common_3";
+    private string Commopath4 = "Assets/Update/Common_4";
+    private string Commopath5 = "Assets/Update/Common_5";
+    private string Commopath6 = "Assets/Update/Common_6";
+    private string Commopath7 = "Assets/Update/Common_7";
+    private string Commopath8 = "Assets/Update/Common_8";
     private string Materialspath = "请熟路路径";
     void OnGUI()
     {
@@ -28,7 +35,7 @@ public class SearchMaterialsGUID : EditorWindow
         if (GUILayout.Button("Search Under Fold Files GUID"))
         {
             // 获取文件夹下所有资源的GUID列表  
-            string[] guids = AssetDatabase.FindAssets("", new string[] { Commopath });
+            string[] guids = AssetDatabase.FindAssets("", new string[] { Commopath1 });
             foreach (string guid in guids)
             {
                 GUIDsName.Add(guid);
@@ -41,7 +48,38 @@ public class SearchMaterialsGUID : EditorWindow
                 // 如果你需要更进一步的操作，可以在这里进行  
                 // ...  
             }
+            string[] guids3 = AssetDatabase.FindAssets("", new string[] { Commopath3 });
+            foreach (string guid in guids3)
+            {
+                GUIDsName.Add(guid);  
+            }
+            string[] guids4 = AssetDatabase.FindAssets("", new string[] { Commopath4 });
+            foreach (string guid in guids4)
+            {
+                GUIDsName.Add(guid);  
+            }
+            string[] guids5 = AssetDatabase.FindAssets("", new string[] { Commopath5 });
+            foreach (string guid in guids5)
+            {
+                GUIDsName.Add(guid);  
+            }
+            string[] guids6 = AssetDatabase.FindAssets("", new string[] { Commopath6 });
+            foreach (string guid in guids6)
+            {
+                GUIDsName.Add(guid);  
+            }
+            string[] guids7 = AssetDatabase.FindAssets("", new string[] { Commopath7 });
+            foreach (string guid in guids7)
+            {
+                GUIDsName.Add(guid);  
+            }
+            string[] guids8 = AssetDatabase.FindAssets("", new string[] { Commopath8 });
+            foreach (string guid in guids8)
+            {
+                GUIDsName.Add(guid);  
+            }
             Material selectedMaterial = Selection.activeObject as Material;
+            // Material selectedMaterial = Selection.objects as Material;
             //Debug.Log("Found Material: " + material.name);
             FindTextureGUID(selectedMaterial, "_Cubemap");
             FindTextureGUID(selectedMaterial, "_Matcap");
