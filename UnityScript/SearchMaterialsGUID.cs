@@ -158,6 +158,10 @@ public class SearchMaterialsGUID : EditorWindow
 
             void FindTextureGUID(Material material, string shaderPropertyName)
             {
+                /*
+                    Material 类有一个 GetTexture 方法，它用于从材质（Material）中获取指定属性的纹理（Texture）。
+                    这个方法通常用于访问材质中存储的贴图，比如漫反射贴图（_MainTex）、法线贴图（_BumpMap）、光泽度贴图（_GlossMap）等。
+                */
                 //调取材质球上引用贴图
                 Texture texture = material.GetTexture(shaderPropertyName);
                 if (texture != null)
@@ -179,6 +183,7 @@ public class SearchMaterialsGUID : EditorWindow
                         else
                         {
                             string NoPath = AssetDatabase.GUIDToAssetPath(guid);
+                            //string.IsNullOrEmpty 是一个静态方法，它接受一个字符串参数，并返回一个布尔值，指示该字符串是否为null或空字符串（即长度为0）。
                             if (!string.IsNullOrEmpty(NoPath))
                             {
                                 // 获取文件名（不包括路径）  
@@ -193,6 +198,7 @@ public class SearchMaterialsGUID : EditorWindow
                                           例如：string path = @"C:\folder\subfolder\myfile.txt";
                                     */
                                     string GUIDfilename = System.IO.Path.GetFileName(AssetDatabase.GUIDToAssetPath(i));
+
                                     //Debug.LogWarning("000000" + GUIDfilename);
 
                                     if (fileName == GUIDfilename)
