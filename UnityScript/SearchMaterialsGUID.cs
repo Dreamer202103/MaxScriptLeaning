@@ -166,6 +166,7 @@ public class SearchMaterialsGUID : EditorWindow
                     string assetPath = AssetDatabase.GetAssetPath(texture);
                     if (!string.IsNullOrEmpty(assetPath))
                     {
+                        //通过路径获取GUID
                         string guid = AssetDatabase.AssetPathToGUID(assetPath);
 
                         bool containsMaterial1 = GUIDsName.Contains(guid);
@@ -184,15 +185,27 @@ public class SearchMaterialsGUID : EditorWindow
                                 string fileName = Path.GetFileName(NoPath);
                                 foreach (var i in GUIDsName)
                                 {
+                                    //是 C# 中的一个静态方法，它属于 System.IO.Path 类，该类提供了处理文件和目录路径信息的各种实用方法
+                                    /*
+                                        1.如果路径字符串为空或仅包含空格，GetFileName 和 GetFileNameWithoutExtension 都会返回空字符串。
+                                        2.如果路径字符串不包含有效的文件名（例如，它只是一个目录路径），则 GetFileName 将返回空字符串。
+                                        3.在处理文件路径时，建议使用 @ 符号来定义字符串字面量，这样可以避免对反斜杠 \ 进行转义。
+                                          例如：string path = @"C:\folder\subfolder\myfile.txt";
+                                    */
                                     string GUIDfilename = System.IO.Path.GetFileName(AssetDatabase.GUIDToAssetPath(i));
                                     //Debug.LogWarning("000000" + GUIDfilename);
 
                                     if (fileName == GUIDfilename)
                                     {
+                                        //通过GUID获得路径
                                         string texturePath = AssetDatabase.GUIDToAssetPath(i);
-
                                         // 加载贴图资源  
+                                        /*
+                                            AssetDatabase.LoadAssetAtPath 只会加载资源到内存中，并不会将其添加到当前场景的 GameObject 上。
+                                            如果你想要将资源（如预制体）实例化到场景中，你需要使用 PrefabUtility.InstantiatePrefab 或其他类似的方法。
+                                        */
                                         Texture2D texture1 = AssetDatabase.LoadAssetAtPath<Texture2D>(texturePath);
+                                        //通过脚本给材质球更换材质贴图
                                         material.SetTexture(shaderPropertyName, texture1);
                                     }
                                     else
