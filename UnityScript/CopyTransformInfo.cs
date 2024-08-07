@@ -23,7 +23,10 @@ public class CopyTransformInfo : EditorWindow
                 // Transform transformX = transform.position.x;
                 // 格式化为字符串  
                 // sb.AppendLine(transformX.ToString("F3")); 
-                sb.AppendLine(transform.position.x.ToString());
+                // sb.Replace(transform.position.x.ToString());
+                //得到一个数据后面有回车键的字符串
+                // sb.AppendLine(transform.position.x.ToString());
+                sb.Append(transform.position.x.ToString());
                 // sb.AppendLine("Position: " + transform.position.ToString("F3"));  
                 // sb.AppendLine("Rotation: " + transform.rotation.eulerAngles.ToString("F3"));  
 
@@ -47,7 +50,7 @@ public class CopyTransformInfo : EditorWindow
                 // Transform transformX = transform.position.x;
                 // 格式化为字符串  
                 // sb.AppendLine(transformX.ToString("F3")); 
-                sb.AppendLine(transform.position.y.ToString());
+                sb.Append(transform.position.y.ToString());
                 // sb.AppendLine("Position: " + transform.position.ToString("F3"));  
                 // sb.AppendLine("Rotation: " + transform.rotation.eulerAngles.ToString("F3"));  
 
@@ -71,7 +74,7 @@ public class CopyTransformInfo : EditorWindow
                 // Transform transformX = transform.position.x;
                 // 格式化为字符串  
                 // sb.AppendLine(transformX.ToString("F3")); 
-                sb.AppendLine(transform.position.z.ToString());
+                sb.Append(transform.position.z.ToString());
                 // sb.AppendLine("Position: " + transform.position.ToString("F3"));  
                 // sb.AppendLine("Rotation: " + transform.rotation.eulerAngles.ToString("F3"));  
 
@@ -94,7 +97,7 @@ public class CopyTransformInfo : EditorWindow
 
                 // 格式化为字符串  
                 // sb.AppendLine("Position: " + transform.position.ToString("F3"));  
-                sb.AppendLine("Rotation: " + transform.rotation.eulerAngles.ToString("F3"));
+                sb.Append("Rotation: " + transform.rotation.eulerAngles.ToString("F3"));
 
                 // 复制到剪切板  
                 GUIUtility.systemCopyBuffer = sb.ToString();
