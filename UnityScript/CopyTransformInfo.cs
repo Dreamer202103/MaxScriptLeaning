@@ -4,7 +4,7 @@ using System.Text;
 
 public class CopyTransformInfo : EditorWindow
 {
-    [MenuItem("DreamerTools/Copy Transform Info to Clipboard")]
+    [MenuItem("DreamerTools/Copy Transform Info to Clipboard &f")]
     private static void ShowWindow()
     {
         GetWindow(typeof(CopyTransformInfo));

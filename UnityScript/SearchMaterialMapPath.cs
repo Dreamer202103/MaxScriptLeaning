@@ -10,7 +10,7 @@ public class SearchMaterialMapPath : EditorWindow
     // public Haset<string> guidNmae = new Haset<string>();
     
 
-    [MenuItem("DreamerTools/SearchMaterialMappath", false, 1)]
+    [MenuItem("DreamerTools/SearchMaterialMappath", false, 4)]
     static public void ShowSearchMaterialMapPath()
     {
         EditorWindow.GetWindow<SearchMaterialMapPath>("Search Material Map Path");

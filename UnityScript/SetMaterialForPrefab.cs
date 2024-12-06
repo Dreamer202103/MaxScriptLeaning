@@ -23,6 +23,10 @@ public class SetMaterialForPrefab : EditorWindow
         {
             Setmaterial(Prefab,CarShowPrefab);
         }
+        if(GUILayout.Button("Set Material"))
+        {
+            Setmaterial1(Prefab,CarShowPrefab);
+        }
     }
 
     public void Setmaterial(GameObject preGameObject,GameObject carGameObject)
@@ -43,7 +47,31 @@ public class SetMaterialForPrefab : EditorWindow
                         // Debug.Log(carGameObject.transform.GetChild(j).name);
                     }
                     
-                    childName(preGameObject.transform.GetChild(i).gameObject,carGameObject.transform.GetChild(j).gameObject);
+                    Setmaterial(preGameObject.transform.GetChild(i).gameObject,carGameObject.transform.GetChild(j).gameObject);
+                }
+            }
+        }
+    }
+
+    public void Setmaterial1(GameObject preGameObject,GameObject carGameObject)
+    {
+        for(int i = 0; i < preGameObject.transform.childCount; i++)
+        {
+            for (int j = 0; j < carGameObject.transform.childCount; j++)
+            {
+                if(i == j)
+                {
+                    if(preGameObject.transform.GetChild(i).GetComponent<Renderer>() != null && carGameObject.transform.GetChild(j).GetComponent<Renderer>() != null) 
+                    {
+                        Renderer carRenderer = carGameObject.transform.GetChild(j).GetComponent<Renderer>();
+                        Material carMaterial = carRenderer.sharedMaterial;
+                        Renderer preRenderer = preGameObject.transform.GetChild(i).GetComponent<Renderer>();
+                        preRenderer.sharedMaterial = carMaterial;
+                        
+                        // Debug.Log(carGameObject.transform.GetChild(j).name);
+                    }
+                    
+                    Setmaterial1(preGameObject.transform.GetChild(i).gameObject,carGameObject.transform.GetChild(j).gameObject);
                 }
             }
         }

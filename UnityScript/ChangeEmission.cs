@@ -11,8 +11,11 @@ public class ChangeEmission : EditorWindow
         EditorWindow.GetWindow<ChangeEmission>("Change Material Emission");
     }
 
+    private string path = "请输入文本...";
     void OnGUI()
     {
+        GUILayout.Label("复制要加载文件夹的名字:");
+        path = EditorGUILayout.TextField("文件夹的名字:", path);
         if (GUILayout.Button("Change Material Emission"))
         {
             string shaderPropertyName = "_Emission";
@@ -54,13 +57,21 @@ public class ChangeEmission : EditorWindow
         if (GUILayout.Button(" Under Fold All File"))
         {
             //Resources.LoadAll
-            // GameObject gameObject = selection.activeObject;
+            // Object gameObject = Selection.activeObject;
+            // Debug.Log(gameObject.name);
+            object[] objects = Resources.LoadAll(path,typeof(Material));
+            foreach(var obj in objects)
+            {
+                Material material = obj as Material;
+                Debug.Log(material.name);
+            }
 
 
-            string shaderPropertyName = "_Emission";
-            Color emissionColor = new Color(0, 0, 0, 0);
-            Material selectedMaterial = Selection.activeObject as Material;
-            selectedMaterial.SetColor(shaderPropertyName, emissionColor);
+
+            // string shaderPropertyName = "_Emission";
+            // Color emissionColor = new Color(0, 0, 0, 0);
+            // Material selectedMaterial = Selection.activeObject as Material;
+            // selectedMaterial.SetColor(shaderPropertyName, emissionColor);
         }
     }
 }

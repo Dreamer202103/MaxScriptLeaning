@@ -68,19 +68,102 @@ public class RenameSelectFiles : EditorWindow
                 // 使用Array.IndexOf方法查找元素在数组中的索引  
                 int index = System.Array.IndexOf(selecteAssets, asset);
                 string filesPath1 = FilesPath + "/" + asset.name + extension;
+                AssetDatabase.RenameAsset(filesPath1, filesNewName + assetName);
                 // Debug.Log("文件的扩展名是：" + selecteAssets.Length);
-                if(assetName.EndsWith("_Leather1", System.StringComparison.OrdinalIgnoreCase))
+                // if(assetName.EndsWith("_Leather1", System.StringComparison.OrdinalIgnoreCase))
+                // {
+                //     AssetDatabase.RenameAsset(filesPath1, filesNewName + "_Leather_" + index);
+                // }
+                // else if(assetName.EndsWith("_int1",System.StringComparison.OrdinalIgnoreCase))
+                // {
+                //     AssetDatabase.RenameAsset(filesPath1, filesNewName + "_int_" + index);
+                // }
+                // else
+                // {
+                //     AssetDatabase.RenameAsset(filesPath1, filesNewName + index);
+                // }
+                
+
+
+            }
+            // foreach (var obj in selecteAssets)
+            // {
+
+            //     if (obj is UnityEngine.Object unityObject)
+            //     {
+            //         string assetPath = AssetDatabase.GetAssetPath(unityObject);
+
+            //         // for (int i = 0; i < selecteAssets.Length; i++)
+            //         // {
+            //         //     //获得选中物体的名字
+            //         //     Object asset = AssetDatabase.LoadAssetAtPath<Object>(assetPath);
+            //         //     string extension = Path.GetExtension(assetPath);
+            //         //     Debug.Log("文件的扩展名是：" + selecteAssets.Length);
+            //         //     string filesPath1 = filesPath + "/" + selecteAssets[i].name + extension;
+            //         //     // AssetDatabase.RenameAsset(filesPath1, filesNewName + asset.name);
+            //         // }
+            //     }
+            //     else
+            //     {
+            //         Debug.Log("选择错误，物体名字：" + obj.name);
+            //     }
+            // }
+        }
+
+        if (GUILayout.Button("Custom Files Name Pro"))
+        {
+            Object[] selecteAssets = Selection.objects;
+            foreach (UnityEngine.Object asset in selecteAssets)
+            {
+                string assetPath = AssetDatabase.GetAssetPath(asset);
+                //获取文件路径(不包含文件名)
+                string FilesPath = Path.GetDirectoryName(assetPath);
+                // 获取资源的名称（不包含扩展名）和扩展名  
+                string assetName = Path.GetFileNameWithoutExtension(assetPath);
+                string extension = Path.GetExtension(assetPath);
+                int lastIndex = assetName.LastIndexOf('_');
+                if(lastIndex != -1 && lastIndex < assetName.Length -1)
                 {
-                    AssetDatabase.RenameAsset(filesPath1, filesNewName + "_Leather_" + index);
+                    string newName = assetName.Substring(lastIndex);
+                    string filesPath1 = FilesPath + "/" + asset.name + extension;
+                    // string assetPath01 = AssetDatabase.GetAssetPath(filesNewName + newName + extension);
+                    string filesPath2 = FilesPath + "/" + (filesNewName + newName) + extension;
+                    // Debug.Log(File.Exists(filesPath2));
+                    int counter = 1;
+                    string tempName = newName;
+                    while(File.Exists(filesPath2))
+                    {
+                        tempName = newName + counter;
+                        filesPath2 = FilesPath + "/" + (filesNewName + tempName) + extension;
+                        counter++;
+                        // Debug.Log(newName);
+                    }
+                    AssetDatabase.RenameAsset(filesPath1, filesNewName + tempName);
+                    
+                    
+                    // Debug.Log(File.Exists(filesNewName + newName + extension));
                 }
-                else if(assetName.EndsWith("_int1",System.StringComparison.OrdinalIgnoreCase))
-                {
-                    AssetDatabase.RenameAsset(filesPath1, filesNewName + "_int_" + index);
-                }
-                else
-                {
-                    AssetDatabase.RenameAsset(filesPath1, filesNewName + index);
-                }
+                // Debug.Log(lastIndex);
+                // string extension = Path.GetExtension(assetPath);
+                //获取他在列表中的索引
+                // int index = selecteAssets.IndexOf(asset); 
+                // 使用Array.IndexOf方法查找元素在数组中的索引  
+                // int index = System.Array.IndexOf(selecteAssets, asset);
+                // string filesPath1 = FilesPath + "/" + asset.name + extension;
+                // AssetDatabase.RenameAsset(filesPath1, filesNewName + assetName);
+                // Debug.Log("文件的扩展名是：" + selecteAssets.Length);
+                // if(assetName.EndsWith("_Leather1", System.StringComparison.OrdinalIgnoreCase))
+                // {
+                //     AssetDatabase.RenameAsset(filesPath1, filesNewName + "_Leather_" + index);
+                // }
+                // else if(assetName.EndsWith("_int1",System.StringComparison.OrdinalIgnoreCase))
+                // {
+                //     AssetDatabase.RenameAsset(filesPath1, filesNewName + "_int_" + index);
+                // }
+                // else
+                // {
+                //     AssetDatabase.RenameAsset(filesPath1, filesNewName + index);
+                // }
                 
 
 

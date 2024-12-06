@@ -11,7 +11,7 @@ public class FindUnuseMaterial : EditorWindow
 {
     public HashSet<string> MateiralsName = new HashSet<string>();
 
-    [MenuItem("DreamerTools/MaterialsTool", false, 3)]
+    [MenuItem("DreamerTools/MaterialsTool", false, 1)]
     public static void ShowUnuseMaterial()
     {
         EditorWindow.GetWindow<FindUnuseMaterial>();
@@ -75,6 +75,7 @@ public class FindUnuseMaterial : EditorWindow
         foreach (Renderer renderer in renderers)
         {
             // 或者使用renderer.materials来获取实例化的材质 
+            // Material[] materials = new Material[renderer.materialCount];
             Material[] materials = renderer.sharedMaterials;  
             // Debug.Log(renderer.name);
 

@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class TransFormChildrenEditor : EditorWindow
 {
-    [MenuItem("DreamerTools/Modify Child Transfor", false, 0)]
+    [MenuItem("DreamerTools/Modify Child Transfor &t", false, 6)]
     public static void ShowWindow()
     {
         EditorWindow.GetWindow<TransFormChildrenEditor>("Doors Open");
