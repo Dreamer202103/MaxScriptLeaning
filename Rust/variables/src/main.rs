@@ -15,6 +15,7 @@ fn main() {
     //let声明的同名新变量，也是不可变的
     //let声明的同名新变量，它的类型可以与之前不同
     let x = x + 1;
+
     println!("The Value of x is {}", x);
 
     let spaces = "  ";
