@@ -22,7 +22,7 @@ public class AnimationAudio : MonoBehaviour
     {
         for (int layerIndex0 = 0; layerIndex0 < animator.layerCount; layerIndex0++)
         {
-            
+
             // 检查该层上是否有动画正在播放  
             if (stateInfo.length > 0f && stateInfo.normalizedTime < 1f)
             {
@@ -35,12 +35,13 @@ public class AnimationAudio : MonoBehaviour
         }
         stateInfo = animator.GetCurrentAnimatorStateInfo(1);
 
-        
+
         // if (stateInfo.IsTag("LB_Open") == false)
         // {
         //     audioSource.clip = openAudio;
         //     audioSource.Play();
         // }
+    
         if (stateInfo.IsTag("LB_Close") == false)
         {
             audioSource.clip = closeAudio;
